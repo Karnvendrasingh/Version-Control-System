@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniGit Demo - Interactive Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-header h1 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .demo-header p {
+            color: #9ca3af;
+        }
+        
+        .terminal {
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .terminal-header {
+            background: #333;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn-red, .btn-yellow, .btn-green {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .btn-red { background: #ff5f56; }
+        .btn-yellow { background: #ffbd2e; }
+        .btn-green { background: #27ca3f; }
+        
+        .terminal-title {
+            color: #ccc;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .terminal-content {
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .terminal-line {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .prompt {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .command {
+            color: #ffffff;
+        }
+        
+        .output {
+            margin-left: 20px;
+        }
+        
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+        .warning { color: #f59e0b; }
+        .info { color: #3b82f6; }
+        
+        .terminal-input {
+            padding: 15px 20px;
+            border-top: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .terminal-input input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        .demo-info {
+            margin-top: 2rem;
+            background: #1f2937;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .demo-info h3 {
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-commands {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-command-btn {
+            padding: 8px 16px;
+            background: #374151;
+            border: 1px solid #4b5563;
+            border-radius: 5px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        
+        .demo-command-btn:hover {
+            background: #3b82f6;
+            transform: translateY(-2px);
+        }
+        
+        .demo-tip {
+            background: #1f2937;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #f59e0b;
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+        
+        .demo-tip i {
+            color: #f59e0b;
+            margin-top: 2px;
+        }
+        
+        .demo-tip p {
+            color: #9ca3af;
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Portfolio
+        </a>
+        
+        <div class="demo-header">
+            <h1><i class="fas fa-code-branch"></i> MiniGit Interactive Demo</h1>
+            <p>Try out MiniGit commands in this simulated terminal</p>
+        </div>
+        
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-red"></span>
+                    <span class="btn-yellow"></span>
+                    <span class="btn-green"></span>
+                </div>
+                <div class="terminal-title">MiniGit Terminal</div>
+            </div>
+            
+            <div class="terminal-content" id="terminal-content">
+                <div class="terminal-line">
+                    <span class="prompt">minigit></span>
+                    <span class="command">Welcome to MiniGit Demo!</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="prompt">minigit></span>
+                    <span class="command">Type 'help' to see available commands</span>
+                </div>
+            </div>
+            
+            <div class="terminal-input">
+                <span class="prompt">minigit></span>
+                <input type="text" id="terminal-input" placeholder="Enter command..." autocomplete="off">
+            </div>
+        </div>
+        
+        <div class="demo-info">
+            <h3>Try these commands:</h3>
+            <div class="demo-commands">
+                <button class="demo-command-btn" data-command="init">init</button>
+                <button class="demo-command-btn" data-command="help">help</button>
+                <button class="demo-command-btn" data-command="status">status</button>
+                <button class="demo-command-btn" data-command="log">log</button>
+                <button class="demo-command-btn" data-command="add main.cpp">add main.cpp</button>
+                <button class="demo-command-btn" data-command="commit -m \"Initial commit\"">commit -m "Initial commit"</button>
+                <button class="demo-command-btn" data-command="add test.txt">add test.txt</button>
+                <button class="demo-command-btn" data-command="checkout 1">checkout 1</button>
+                <button class="demo-command-btn" data-command="undo">undo</button>
+                <button class="demo-command-btn" data-command="diff">diff</button>
+            </div>
+            
+            <div class="demo-tip">
+                <i class="fas fa-lightbulb"></i>
+                <p>This is a simulation. Download the real MiniGit for full functionality with actual file tracking!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo commands and responses
+        const demoCommands = {
+            'init': {
+                output: 'MiniGit initialized successfully!',
+                type: 'success'
+            },
+            'help': {
+                output: `Available commands:
+init                    - Initialize MiniGit repository
+add <filename>          - Add file to staging area
+commit -m "message"     - Commit staged files
+log                     - Show commit history
+checkout <id>           - Checkout to specific commit
+status                  - Show current status
+undo                    - Undo last checkout
+redo                    - Redo last undo
+diff                    - Show file differences
+help                    - Show this help message
+exit                    - Exit MiniGit`,
+                type: 'info'
+            },
+            'status': {
+                output: `=== Status ===
+No staged files.
+
+Tracked files:
+  main.cpp (untracked)
+  test.txt (untracked)
+
+Current commit: None`,
+                type: 'info'
+            },
+            'log': {
+                output: 'No commits found.',
+                type: 'warning'
+            },
+            'add main.cpp': {
+                output: "Added 'main.cpp' to staging area.",
+                type: 'success'
+            },
+            'add test.txt': {
+                output: "Added 'test.txt' to staging area.",
+                type: 'success'
+            },
+            'commit -m "Initial commit"': {
+                output: 'Committed 1 files with ID: 1\nMessage: Initial commit',
+                type: 'success'
+            },
+            'checkout 1': {
+                output: 'Checked out to commit 1\nMessage: Initial commit',
+                type: 'success'
+            },
+            'undo': {
+                output: 'Undone to previous commit',
+                type: 'success'
+            },
+            'redo': {
+                output: 'Redone to next commit',
+                type: 'success'
+            },
+            'diff': {
+                output: `=== File Differences ===
+main.cpp - UNCHANGED
+test.txt - NEW FILE`,
+                type: 'info'
+            },
+            'exit': {
+                output: 'Goodbye!',
+                type: 'info'
+            }
+        };
+
+        // DOM elements
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalContent = document.getElementById('terminal-content');
+        const demoCommandBtns = document.querySelectorAll('.demo-command-btn');
+
+        // Add line to terminal
+        function addTerminalLine(command, output = null, type = 'command') {
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            
+            if (type === 'command') {
+                line.innerHTML = `
+                    <span class="prompt">minigit></span>
+                    <span class="command">${command}</span>
+                `;
+            } else {
+                line.className = 'terminal-line output';
+                const outputClass = type === 'success' ? 'success' : 
+                                   type === 'error' ? 'error' : 
+                                   type === 'warning' ? 'warning' : 'info';
+                line.innerHTML = `<span class="${outputClass}">${output}</span>`;
+            }
+            
+            terminalContent.appendChild(line);
+            terminalContent.scrollTop = terminalContent.scrollHeight;
+        }
+
+        // Process command
+        function processCommand(command) {
+            command = command.trim();
+            
+            if (!command) return;
+            
+            // Add command line
+            addTerminalLine(command);
+            
+            // Process command
+            if (demoCommands[command]) {
+                const response = demoCommands[command];
+                setTimeout(() => {
+                    addTerminalLine(command, response.output, response.type);
+                }, 300);
+            } else if (command.startsWith('add ')) {
+                const filename = command.substring(4);
+                setTimeout(() => {
+                    addTerminalLine(command, `Added '${filename}' to staging area.`, 'success');
+                }, 300);
+            } else if (command.startsWith('commit -m ')) {
+                const message = command.substring(10, command.length - 1);
+                setTimeout(() => {
+                    addTerminalLine(command, `Committed files with message: ${message}`, 'success');
+                }, 300);
+            } else {
+                setTimeout(() => {
+                    addTerminalLine(command, `Unknown command: ${command}`, 'error');
+                }, 300);
+            }
+        }
+
+        // Handle input
+        function handleInput(e) {
+            if (e.key === 'Enter') {
+                const command = terminalInput.value;
+                processCommand(command);
+                terminalInput.value = '';
+            }
+        }
+
+        // Handle command buttons
+        function handleCommandBtn() {
+            const command = this.getAttribute('data-command');
+            terminalInput.value = command;
+            processCommand(command);
+            terminalInput.value = '';
+        }
+
+        // Initialize demo
+        function initDemo() {
+            // Add some initial content
+            setTimeout(() => {
+                processCommand('init');
+            }, 2000);
+            
+            setTimeout(() => {
+                processCommand('add main.cpp');
+            }, 4000);
+            
+            setTimeout(() => {
+                processCommand('commit -m "Initial commit"');
+            }, 6000);
+        }
+
+        // Event listeners
+        terminalInput.addEventListener('keypress', handleInput);
+        demoCommandBtns.forEach(btn => {
+            btn.addEventListener('click', handleCommandBtn);
+        });
+
+        // Focus input on load
+        window.addEventListener('load', () => {
+            terminalInput.focus();
+            initDemo();
+        });
+    </script>
+</body>
+</html> 

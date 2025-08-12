@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniGit - Lightweight C++ Version Control System</title>
+    <meta name="description" content="MiniGit is a lightweight, open-source version control system built in C++. Experience branching, commit history, file integrity, and more. Perfect for learning Git concepts and C++ data structures.">
+    <meta name="keywords" content="MiniGit, version control, C++, git, lightweight, open source, educational, commit, branch, file integrity, terminal, TUI, data structures, project, code, software, repository, source control, staging, commit history, undo, redo, merge, ignore, test, CLI, persistent session, educational project">
+    <meta name="author" content="Your Name">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animate On Scroll CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Google Analytics GA4 (replace G-XXXXXXXXXX with your Measurement ID) -->
+    <!-- For GDPR compliance, consider showing a cookie consent banner before loading GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+    </script>
+</head>
+    <body>
+        <!-- Skip to content link for accessibility -->
+        <a href="#main-content" class="skip-link" tabindex="0" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;background:#fff;color:#2563eb;z-index:10000;">Skip to main content</a>
+        <!-- Loading Overlay -->
+        <div class="loading-overlay">
+            <div class="loading"></div>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="navbar" role="navigation" aria-label="Main Navigation">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <i class="fas fa-code-branch" aria-hidden="true"></i>
+                    <span>MiniGit</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link" tabindex="0">Home</a></li>
+                    <li><a href="#about" class="nav-link" tabindex="0">About</a></li>
+                    <li><a href="#features" class="nav-link" tabindex="0">Features</a></li>
+                    <li><a href="#demo" class="nav-link" tabindex="0">Demo</a></li>
+                    <li><a href="./demo.html" class="nav-link" tabindex="0">Full Interactive Demo</a></li>
+                    <li><a href="#download" class="nav-link" tabindex="0">Download</a></li>
+                    <li><a href="#contact" class="nav-link" tabindex="0">Contact</a></li>
+                </ul>
+                <div class="theme-toggle" tabindex="0" role="button" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i>
+                </div>
+                <div class="hamburger" tabindex="0" role="button" aria-label="Open navigation menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+
+        <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero" aria-label="Home section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="gradient-text" data-text="MiniGit">MiniGit</span>
+                        <span class="gradient-text" data-text="Version Control">Version Control</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        A lightweight, Git-like version control system built in C++ that demonstrates 
+                        data structures and algorithms concepts with a beautiful, modern interface.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#download" class="btn btn-primary" tabindex="0" aria-label="Download Now">
+                            <i class="fas fa-download" aria-hidden="true"></i>
+                            Download Now
+                        </a>
+                        <a href="demo.html" class="btn btn-secondary" tabindex="0" aria-label="Full Interactive Demo" style="margin-left:1em;">
+                            <i class="fas fa-terminal" aria-hidden="true"></i>
+                            Open Full Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="terminal-window" aria-label="MiniGit Terminal Simulation">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span class="btn-red" aria-hidden="true"></span>
+                                <span class="btn-yellow" aria-hidden="true"></span>
+                                <span class="btn-green" aria-hidden="true"></span>
+                            </div>
+                            <div class="terminal-title">MiniGit Terminal</div>
+                        </div>
+                        <div class="terminal-content">
+                            <div class="terminal-line">
+                                <span class="prompt">minigit&gt;</span>
+                                <span class="command">init</span>
+                            </div>
+                            <div class="terminal-line output">
+                                <span class="success">MiniGit initialized successfully!</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="prompt">minigit&gt;</span>
+                                <span class="command">add main.cpp</span>
+                            </div>
+                            <div class="terminal-line output">
+                                <span class="success">Added 'main.cpp' to staging area.</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="prompt">minigit&gt;</span>
+                                <span class="command">commit -m "Initial commit"</span>
+                            </div>
+                            <div class="terminal-line output">
+                                <span class="success">Committed 1 files with ID: 1</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="prompt">minigit&gt;</span>
+                                <span class="command">_</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About MiniGit</h2>
+                    <p>A simplified version control system that demonstrates core Git concepts</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>What is MiniGit?</h3>
+                        <p>
+                            MiniGit is a lightweight, educational version control system implemented in C++ that 
+                            simulates the core functionality of Git. It's designed to help developers understand 
+                            how version control systems work under the hood while demonstrating important data 
+                            structures and algorithms concepts.
+                        </p>
+                        <p>
+                            Built with modern C++17, MiniGit showcases the use of singly linked lists for commit 
+                            chains, hash maps for file tracking, and stacks for undo/redo functionality. It provides 
+                            a hands-on learning experience for anyone interested in understanding version control 
+                            systems or improving their C++ skills.
+                        </p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card" data-aos="fade-up">
+                            <div class="stat-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Lines of Code</div>
+                        </div>
+                        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="stat-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Data Structures</div>
+                        </div>
+                        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="stat-icon">
+                                <i class="fas fa-terminal"></i>
+                            </div>
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Commands</div>
+                        </div>
+                        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="stat-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Platforms</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section class="tech-stack">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Tech Stack</h2>
+                    <p>Built with modern technologies and best practices</p>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fab fa-cpp"></i>
+                        </div>
+                        <h3>C++17</h3>
+                        <p>Modern C++ with filesystem support and advanced features</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3>Linked Lists</h3>
+                        <p>Singly linked list implementation for commit chain management</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fas fa-hashtag"></i>
+                        </div>
+                        <h3>Hash Maps</h3>
+                        <p>Unordered maps for efficient file content tracking</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3>Stacks</h3>
+                        <p>Stack data structure for undo/redo functionality</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>File I/O</h3>
+                        <p>Robust file reading and writing operations</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3>Hashing</h3>
+                        <p>C++ hash functions for content change detection</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features bg-gray-50 py-12">
+            <div class="container max-w-4xl mx-auto px-4">
+                <div class="section-header mb-8">
+                    <h2 class="text-3xl font-bold text-center flex items-center justify-center gap-2" data-aos="fade-up">
+                      <span>🛠️</span>
+                      <span>MiniGit – Key Features</span>
+                    </h2>
+                    <p class="text-center text-gray-600" data-aos="fade-up" data-aos-delay="100">Comprehensive version control functionality</p>
+                </div>
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  <!-- Branching Support -->
+                  <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-lg transition" data-aos="zoom-in">
+                    <div class="text-4xl mb-3">📁</div>
+                    <h3 class="font-semibold text-lg mb-2">Branching Support</h3>
+                    <p class="text-gray-600 text-center text-sm">
+                      Create and switch between branches, merge changes, and list available branches.
+                    </p>
+                  </div>
+                  <!-- Persistent Session -->
+                  <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-4xl mb-3">💾</div>
+                    <h3 class="font-semibold text-lg mb-2">Persistent Session</h3>
+                    <p class="text-gray-600 text-center text-sm">
+                      Save and load commit history and staging area to continue working after program exit.
+                    </p>
+                  </div>
+                  <!-- File Integrity Check -->
+                  <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-4xl mb-3">🔐</div>
+                    <h3 class="font-semibold text-lg mb-2">File Integrity Check</h3>
+                    <p class="text-gray-600 text-center text-sm">
+                      Detect if files have been modified or tampered with using content hash verification.
+                    </p>
+                  </div>
+                  <!-- Text-Based GUI -->
+                  <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-4xl mb-3">🖥️</div>
+                    <h3 class="font-semibold text-lg mb-2">Text-Based GUI</h3>
+                    <p class="text-gray-600 text-center text-sm">
+                      Launch a minimal terminal user interface (TUI) for interactive version control.
+                    </p>
+                  </div>
+                  <!-- Built-in Testing -->
+                  <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="text-4xl mb-3">🧪</div>
+                    <h3 class="font-semibold text-lg mb-2">Built-in Testing</h3>
+                    <p class="text-gray-600 text-center text-sm">
+                      Run test cases for core commands and check module reliability using test CLI commands.
+                    </p>
+                  </div>
+                  <!-- Ignore Files -->
+                  <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="text-4xl mb-3">🚫</div>
+                    <h3 class="font-semibold text-lg mb-2">Ignore Files (.minigitignore)</h3>
+                    <p class="text-gray-600 text-center text-sm">
+                      Exclude specified files from version control using ignore/unignore commands.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex justify-center mt-10" data-aos="fade-up" data-aos-delay="600">
+                  <a href="https://github.com/yourusername/minigit" target="_blank"
+                     class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-full shadow hover:bg-blue-700 transition">
+                    View on GitHub
+                  </a>
+                </div>
+            </div>
+        </section>
+        <!-- How MiniGit Works Section -->
+        <section id="how-it-works" class="how-it-works bg-white py-12">
+          <div class="container max-w-3xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-8 flex items-center justify-center gap-2">
+              <span>🔄</span>
+              <span>How MiniGit Works</span>
+            </h2>
+            <ol class="flex flex-col sm:flex-row justify-between items-center gap-8 sm:gap-0">
+              <li class="flex flex-col items-center flex-1" style="min-width:120px;">
+                <div class="text-3xl mb-2">🚀</div>
+                <span class="font-semibold">init</span>
+                <span class="text-gray-500 text-sm text-center">Initialize a new MiniGit repository</span>
+              </li>
+              <li class="flex flex-col items-center flex-1" style="min-width:120px;">
+                <div class="text-3xl mb-2">➕</div>
+                <span class="font-semibold">add</span>
+                <span class="text-gray-500 text-sm text-center">Stage files for version control</span>
+              </li>
+              <li class="flex flex-col items-center flex-1" style="min-width:120px;">
+                <div class="text-3xl mb-2">💾</div>
+                <span class="font-semibold">commit</span>
+                <span class="text-gray-500 text-sm text-center">Save a snapshot with a message</span>
+              </li>
+              <li class="flex flex-col items-center flex-1" style="min-width:120px;">
+                <div class="text-3xl mb-2">📜</div>
+                <span class="font-semibold">log</span>
+                <span class="text-gray-500 text-sm text-center">View commit history</span>
+              </li>
+              <li class="flex flex-col items-center flex-1" style="min-width:120px;">
+                <div class="text-3xl mb-2">⏪</div>
+                <span class="font-semibold">checkout</span>
+                <span class="text-gray-500 text-sm text-center">Restore a previous version</span>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- Demo Section -->
+        <section id="demo" class="demo">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Live Demo</h2>
+                    <p>Try MiniGit commands in this interactive terminal</p>
+                </div>
+                <div class="demo-container">
+                    <div class="demo-terminal">
+                        <div class="demo-header">
+                            <div class="demo-buttons">
+                                <span class="btn-red"></span>
+                                <span class="btn-yellow"></span>
+                                <span class="btn-green"></span>
+                            </div>
+                            <div class="demo-title">MiniGit Interactive Demo</div>
+                        </div>
+                        <div class="demo-content" id="demo-content">
+                            <div class="demo-line">
+                                <span class="demo-prompt">minigit></span>
+                                <span class="demo-text">Welcome to MiniGit Demo!</span>
+                            </div>
+                            <div class="demo-line">
+                                <span class="demo-prompt">minigit></span>
+                                <span class="demo-text">Type 'help' to see available commands</span>
+                            </div>
+                        </div>
+                        <div class="demo-input-container">
+                            <span class="demo-prompt">minigit></span>
+                            <input type="text" id="demo-input" placeholder="Enter command..." autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="demo-info">
+                        <h3>Try these commands:</h3>
+                        <div class="demo-commands">
+                            <button class="demo-command-btn" data-command="init">init</button>
+                            <button class="demo-command-btn" data-command="help">help</button>
+                            <button class="demo-command-btn" data-command="status">status</button>
+                            <button class="demo-command-btn" data-command="log">log</button>
+                            <button class="demo-command-btn" data-command="add main.cpp">add main.cpp</button>
+                            <button class="demo-command-btn" data-command="commit -m &quot;Initial commit&quot;">commit -m "Initial commit"</button>
+                            <button class="demo-command-btn" data-command="add test.txt">add test.txt</button>
+                            <button class="demo-command-btn" data-command="checkout 1">checkout 1</button>
+                            <button class="demo-command-btn" data-command="undo">undo</button>
+                            <button class="demo-command-btn" data-command="diff">diff</button>
+                        </div>
+                        <div class="demo-tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>This is a simulation. Download the real MiniGit for full functionality with actual file tracking!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tutorial Section -->
+        <section id="tutorial" class="tutorial">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Interactive Tutorial</h2>
+                    <p>Learn version control step by step with guided instructions and hands-on practice.</p>
+                </div>
+                <div id="tutorial-progress-container">
+                    <div id="tutorial-progress-bar"></div>
+                </div>
+                <div id="tutorial-content">
+                    <!-- Tutorial steps will be injected here by JS -->
+                </div>
+                <div id="tutorial-command-container">
+                    <input type="text" id="tutorial-command-input" placeholder="Type your command here..." autocomplete="off">
+                    <button id="tutorial-submit-command" class="btn btn-primary">Submit</button>
+                </div>
+                <div id="tutorial-feedback"></div>
+                <div id="tutorial-hint-container">
+                    <button id="tutorial-hint-btn" class="btn btn-outline">Show Hint</button>
+                    <span id="tutorial-hint-text" style="display:none;"></span>
+                </div>
+                <div id="tutorial-controls">
+                    <button id="tutorial-prev" class="btn btn-secondary">Previous</button>
+                    <button id="tutorial-next" class="btn btn-primary">Next</button>
+                    <button id="tutorial-restart" class="btn btn-outline">Restart Tutorial</button>
+                    <button id="tutorial-review" class="btn btn-outline">Review Steps</button>
+                </div>
+                <div id="tutorial-review-content" style="display:none;"></div>
+            </div>
+        </section>
+
+        <!-- Commit Graph Section -->
+        <section id="commit-graph" class="commit-graph">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Commit History Visualization</h2>
+                    <p>See how commits and branches form a version control graph.</p>
+                </div>
+                <div id="commit-graph-info" style="margin-bottom:1em;background:#f3f4f6;padding:1em;border-radius:0.5em;color:#222;font-size:1.05em;">
+                    <b>What am I seeing?</b><br>
+                    Each circle is a commit. Lines show parent-child relationships. Colors represent branches. The gold border and 'HEAD' label show your current position. Click a commit for details.
+                </div>
+                <div id="commit-graph-container">
+                    <!-- Commit graph will be rendered here -->
+                </div>
+                <div id="commit-explanation" style="margin-top:1em;font-size:1.05em;color:#2563eb;"></div>
+                <div id="commit-graph-legend" style="margin-top:1.5em;background:#f9fafb;padding:1em;border-radius:0.5em;">
+                    <b>Legend:</b>
+                    <ul style="margin:0.5em 0 0 1.5em;">
+                        <li><span style="color:#2563eb;font-weight:bold;">Blue circle</span>: Commit on <b>main</b> branch</li>
+                        <li><span style="color:#06b6d4;font-weight:bold;">Cyan circle</span>: Commit on another branch</li>
+                        <li><span style="color:#ffd700;font-weight:bold;">Gold border</span>: HEAD (current commit)</li>
+                        <li><span style="color:#888;">Gray line</span>: Parent-child relationship</li>
+                        <li><b>HEAD</b>: Your current position in the history</li>
+                        <li><b>Branch label</b>: Name of the branch at that commit</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diff Viewer Section -->
+        <section id="diff-viewer" class="diff-viewer">
+            <div class="container">
+                <div class="section-header">
+                    <h2>File Diff Viewer</h2>
+                    <p>Compare file changes between commits visually.</p>
+                </div>
+                <div id="diff-viewer-container">
+                    <!-- Diff viewer will be rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="quiz">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Version Control Quiz</h2>
+                    <p>Test your knowledge with interactive questions and challenges.</p>
+                </div>
+                <div id="quiz-content">
+                    <!-- Quiz questions will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Animated File Area Section -->
+        <section id="file-area" class="file-area">
+            <div class="container">
+                <div class="section-header">
+                    <h2>File Workflow Animation</h2>
+                    <p>See how files move between the working directory, staging area, and repository as you use commands. <br><small>Hover over files or areas for explanations. Click a file to preview its content.</small></p>
+                </div>
+                <div id="file-area-animation">
+                    <!-- Animated file workflow will be rendered here by JS -->
+                </div>
+                <button id="file-area-reset" class="btn btn-outline" style="margin-top:1.5rem;">Reset Animation</button>
+            </div>
+        </section>
+
+        <!-- File Content Modal -->
+        <div id="file-content-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" id="close-file-modal">&times;</span>
+                <h3 id="file-modal-title"></h3>
+                <pre id="file-modal-content" style="background:#23272b;color:#fff;padding:1em;border-radius:0.5em;"></pre>
+                <div id="file-modal-status" style="margin-top:1em;color:#10b981;"></div>
+            </div>
+        </div>
+
+        <!-- Achievements/Badges Section -->
+        <section id="achievements" class="achievements">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Achievements & Badges</h2>
+                    <p>Earn badges as you progress through the tutorial and quiz!</p>
+                </div>
+                <div id="badges-container">
+                    <!-- Badges will be rendered here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Glossary Section -->
+        <section id="glossary" class="glossary">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Version Control Glossary</h2>
+                    <p>Key terms and concepts explained.</p>
+                </div>
+                <div id="glossary-content">
+                    <!-- Glossary terms will be rendered here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet Section -->
+        <section id="cheat-sheet" class="cheat-sheet">
+            <div class="container">
+                <div class="section-header">
+                    <h2>MiniGit Cheat Sheet</h2>
+                    <p>Quick reference for common commands.</p>
+                </div>
+                <div id="cheat-sheet-content">
+                    <!-- Cheat sheet will be rendered here by JS -->
+                </div>
+                <a id="download-cheat-sheet" class="btn btn-primary" href="#" download="minigit-cheat-sheet.txt">Download Cheat Sheet</a>
+            </div>
+        </section>
+
+        <!-- Merge Conflict Modal -->
+        <div id="merge-conflict-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" id="close-merge-modal">&times;</span>
+                <h3>Merge Conflict Simulation</h3>
+                <div id="merge-conflict-content">
+                    <!-- Merge conflict simulation will be rendered here by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Section -->
+        <section id="download" class="download">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Download MiniGit</h2>
+                    <p>Get started with version control today</p>
+                </div>
+                <div class="download-content">
+                    <div class="download-info">
+                        <h3>Ready to use MiniGit?</h3>
+                        <p>
+                            Download the complete MiniGit project with source code, build scripts, 
+                            and comprehensive documentation. Works on Windows, Linux, and macOS.
+                        </p>
+                        <div class="download-requirements">
+                            <h4>Requirements:</h4>
+                            <ul>
+                                <li>C++17 compatible compiler (GCC 7+, Clang 5+, or MSVC 2017+)</li>
+                                <li>Make (optional, for using Makefile)</li>
+                                <li>Terminal/Command Prompt</li>
+                            </ul>
+                        </div>
+                        <div class="download-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">27KB</span>
+                                <span class="stat-label">Source Code</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">188KB</span>
+                                <span class="stat-label">Windows EXE</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">1000+</span>
+                                <span class="stat-label">Lines of Code</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="download-options">
+                        <div class="download-card">
+                            <div class="download-icon">
+                                <i class="fas fa-file-archive"></i>
+                            </div>
+                            <h3>Source Code</h3>
+                            <p>Complete project with source files and documentation</p>
+                            <a href="../MiniGit-Project.zip" class="btn btn-primary download-btn" download>
+                                <i class="fas fa-download"></i>
+                                Download Source
+                            </a>
+                        </div>
+                        <div class="download-card">
+                            <div class="download-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <h3>Windows Executable</h3>
+                            <p>Ready-to-run MiniGit for Windows users</p>
+                            <a href="../downloads/minigit.exe" class="btn btn-primary download-btn" download>
+                                <i class="fas fa-download"></i>
+                                Download EXE
+                            </a>
+                        </div>
+                        <div class="download-card">
+                            <div class="download-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <h3>GitHub Repository</h3>
+                            <p>Clone the repository and contribute to the project</p>
+                            <a href="#" class="btn btn-secondary download-btn" onclick="openGitHub()">
+                                <i class="fab fa-github"></i>
+                                View on GitHub
+                            </a>
+                        </div>
+                        <div class="download-card">
+                            <div class="download-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3>Documentation</h3>
+                            <p>Comprehensive guide and API documentation</p>
+                            <a href="#" class="btn btn-outline download-btn" onclick="openDocs()">
+                                <i class="fas fa-book-open"></i>
+                                Read Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions or want to contribute?</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Let's Connect</h3>
+                        <p>
+                            I'm passionate about creating educational tools and sharing knowledge. 
+                            Feel free to reach out for collaboration, questions, or just to say hello!
+                        </p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>GitHub</h4>
+                                    <a href="#" onclick="openGitHub()">github.com/yourusername</a>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fab fa-linkedin"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>LinkedIn</h4>
+                                    <a href="#" onclick="openLinkedIn()">linkedin.com/in/yourusername</a>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Email</h4>
+                                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Send a Message</h3>
+                        <form id="contact-form" action="https://formspree.io/f/yourformid" method="POST">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                            <p id="form-success" style="display:none;color:var(--success-color);margin-top:1rem;">Thank you! Your message has been sent.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+        // Formspree AJAX success message
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+          contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            const action = contactForm.getAttribute('action');
+            const response = await fetch(action, {
+              method: 'POST',
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+              contactForm.reset();
+              document.getElementById('form-success').style.display = 'block';
+            } else {
+              alert('There was a problem submitting your form. Please try again.');
+            }
+          });
+        }
+        </script>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <i class="fas fa-code-branch"></i>
+                            <span>MiniGit</span>
+                        </div>
+                        <p>A lightweight version control system built with C++ and modern web technologies.</p>
+                        <div class="footer-social">
+                            <a href="#" onclick="openGitHub()"><i class="fab fa-github"></i></a>
+                            <a href="#" onclick="openLinkedIn()"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#download">Download</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#" onclick="openDocs()">Documentation</a></li>
+                            <li><a href="#" onclick="openGitHub()">Source Code</a></li>
+                            <li><a href="#demo">Live Demo</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Technologies</h4>
+                        <ul>
+                            <li>C++17</li>
+                            <li>Data Structures</li>
+                            <li>Algorithms</li>
+                            <li>Web Development</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p></p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <script>AOS.init({ once: true });</script>
+    </body>
+</html> 
