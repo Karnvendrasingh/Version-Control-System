@@ -25,6 +25,7 @@ x86/
 
 # IDE and Editor Files
 .vscode/
+.sfdx/
 .idea/
 *.swp
 *.swo

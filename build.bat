@@ -17,7 +17,7 @@ if %errorlevel% neq 0 (
 )
 
 echo Compiling MiniGit...
-g++ -std=c++17 -Wall -Wextra -O2 -o minigit.exe minigit.cpp
+g++ -std=c++17 -Wall -Wextra -O2 -o minigit.exe src/minigit.cpp
 
 if %errorlevel% equ 0 (
     echo.

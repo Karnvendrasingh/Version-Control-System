@@ -9,7 +9,7 @@
     <meta name="author" content="Your Name">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- AOS Animate On Scroll CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <!-- Google Analytics GA4 (replace G-XXXXXXXXXX with your Measurement ID) -->
@@ -41,8 +41,9 @@
                     <li><a href="#home" class="nav-link" tabindex="0">Home</a></li>
                     <li><a href="#about" class="nav-link" tabindex="0">About</a></li>
                     <li><a href="#features" class="nav-link" tabindex="0">Features</a></li>
-                    <li><a href="#demo" class="nav-link" tabindex="0">Demo</a></li>
-                    <li><a href="./demo.html" class="nav-link" tabindex="0">Full Interactive Demo</a></li>
+                    <li><a href="#roadmap" class="nav-link" tabindex="0">Roadmap</a></li>
+                    <li><a href="#deployment" class="nav-link" tabindex="0">Deployment</a></li>
+                    <li><a href="./demo.html" class="nav-link" tabindex="0">Full Demo</a></li>
                     <li><a href="#download" class="nav-link" tabindex="0">Download</a></li>
                     <li><a href="#contact" class="nav-link" tabindex="0">Contact</a></li>
                 </ul>
@@ -295,7 +296,7 @@
                   </div>
                 </div>
                 <div class="flex justify-center mt-10" data-aos="fade-up" data-aos-delay="600">
-                  <a href="https://github.com/yourusername/minigit" target="_blank"
+                  <a href="https://github.com/karnvendrasingh/minigit" target="_blank"
                      class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-full shadow hover:bg-blue-700 transition">
                     View on GitHub
                   </a>
@@ -542,6 +543,67 @@
                     <!-- Cheat sheet will be rendered here by JS -->
                 </div>
                 <a id="download-cheat-sheet" class="btn btn-primary" href="#" download="minigit-cheat-sheet.txt">Download Cheat Sheet</a>
+            </div>
+        </section>
+
+        <!-- Feature Roadmap & Improvement Suggestions Section -->
+        <section id="roadmap" class="roadmap" style="padding: 4rem 0; background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                    <span style="background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Future Roadmap</span>
+                    <h2 style="margin-top: 0.8rem;">Recommended Feature Improvements</h2>
+                    <p>Suggested high-impact additions to take MiniGit to enterprise production parity.</p>
+                </div>
+                <div class="roadmap-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <div class="feature-card" style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <div style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 1rem;"><i class="fas fa-fingerprint"></i></div>
+                        <h3>SHA-1 / SHA-256 Blob Hashing</h3>
+                        <p>Replace standard string hashing with cryptographic SHA object hashing to store immutable content blobs in object stores, matching production Git mechanisms.</p>
+                    </div>
+                    <div class="feature-card" style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <div style="font-size: 2rem; color: var(--accent-emerald); margin-bottom: 1rem;"><i class="fas fa-code-merge"></i></div>
+                        <h3>3-Way Branch Merging & Conflicts</h3>
+                        <p>Implement automatic 3-way merge algorithms between branch tips and inject standard conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>) when file edits collide.</p>
+                    </div>
+                    <div class="feature-card" style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <div style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"><i class="fas fa-box-archive"></i></div>
+                        <h3>Stash Stack (<code>minigit stash</code>)</h3>
+                        <p>Allow developers to temporarily shelve dirty uncommitted working directory modifications onto a LIFO stack and pop them back later.</p>
+                    </div>
+                    <div class="feature-card" style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <div style="font-size: 2rem; color: var(--accent-cyan); margin-bottom: 1rem;"><i class="fas fa-pen-to-square"></i></div>
+                        <h3>Commit Amending (<code>--amend</code>)</h3>
+                        <p>Enable updating the commit message or staged snapshot of the tip node on the active branch linked list without spawning a new node.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deployment Recommendations Section -->
+        <section id="deployment" class="deployment" style="padding: 4rem 0;">
+            <div class="container">
+                <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                    <span style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Deployment Guide</span>
+                    <h2 style="margin-top: 0.8rem;">Best Places to Deploy MiniGit</h2>
+                    <p>Optimized deployment strategies for both the web showcase interface and executable binaries.</p>
+                </div>
+                <div class="deployment-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="deploy-card" style="background: var(--bg-secondary); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;"><i class="fab fa-github"></i> 1. GitHub Pages (Web UI - Recommended)</h3>
+                        <p>Deploy the <code>website/</code> directory instantly using GitHub Pages. Features free hosting, automatic SSL certificates, global CDN, and custom domain integration.</p>
+                        <div style="margin-top: 1rem; background: var(--bg-tertiary); padding: 0.8rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">Settings &gt; Pages &gt; Source: Branch main / website</div>
+                    </div>
+                    <div class="deploy-card" style="background: var(--bg-secondary); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;"><i class="fas fa-bolt"></i> 2. Vercel / Netlify (Web UI)</h3>
+                        <p>Zero-configuration deployment for static assets with instantaneous preview builds for every pull request and edge performance.</p>
+                        <div style="margin-top: 1rem; background: var(--bg-tertiary); padding: 0.8rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">npx vercel --prod (Build Output: website/)</div>
+                    </div>
+                    <div class="deploy-card" style="background: var(--bg-secondary); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h3 style="color: var(--accent-emerald); margin-bottom: 0.5rem;"><i class="fas fa-cube"></i> 3. GitHub Releases (CLI Executables)</h3>
+                        <p>Package compiled Windows binaries (<code>minigit.exe</code>) and Linux binaries into official GitHub Release assets tagged alongside repository versions.</p>
+                        <div style="margin-top: 1rem; background: var(--bg-tertiary); padding: 0.8rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">git tag -a v1.0 -m "Release v1.0" &amp;&amp; git push origin v1.0</div>
+                    </div>
+                </div>
             </div>
         </section>
 

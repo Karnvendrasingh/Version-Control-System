@@ -1,255 +1,162 @@
-# MiniGit - Lightweight Version Control System
+# MiniGit - Lightweight C++ Version Control System 🚀
 
-A simplified Git-like version control system implemented in C++ that demonstrates the use of data structures and algorithms (DSA) concepts.
+A high-performance, educational **Version Control System (VCS)** built in modern C++17 alongside an interactive web portfolio and terminal simulator. MiniGit demonstrates core **Data Structures and Algorithms (DSA)** concepts by simulating real-world Git operations like linked-list commit chains, hash-map staging areas, stack-based undo/redo, file diffs, and snapshot tracking.
 
-## 🚀 Features
-
-### Core Features
-- **Singly Linked List**: Represents the chain of commits
-- **Hash Maps**: Track file content changes using `std::unordered_map`
-- **File I/O**: Read and write file content during staging and commit
-- **C++ Hash Functions**: Use `std::hash` for content tracking
-- **Staging Area**: Add files before committing
-- **Commit History**: View all commits with messages and timestamps
-- **Checkout**: Restore project to previous commits
-
-### Bonus Features
-- **Undo/Redo**: Navigate through commit history using stacks
-- **Diff**: Compare file changes between commits
-- **Colored Terminal Output**: User-friendly colored messages
-- **File Snapshots**: Save each commit's version in separate directories
-- **Cross-platform**: Works on Windows, Linux, and macOS
-
-## 🛠️ Tech Stack
-
-- **C++17**: Modern C++ with filesystem support
-- **Data Structures**: 
-  - Singly Linked List (commit chain)
-  - Hash Maps (file tracking)
-  - Stacks (undo/redo)
-  - Vectors (file lists)
-- **Algorithms**: Hashing, file comparison, content tracking
-- **File I/O**: Reading and writing files
-- **Cross-platform**: Windows, Linux, macOS support
-
-## 📦 Installation
-
-### Prerequisites
-- C++17 compatible compiler (GCC 7+, Clang 5+, or MSVC 2017+)
-- Make (optional, for using Makefile)
-
-### Build Instructions
-
-1. **Clone or download the project**
-   ```bash
-   git clone <repository-url>
-   cd minigit
-   ```
-
-2. **Compile using Makefile (recommended)**
-   ```bash
-   make
-   ```
-
-3. **Or compile manually**
-   ```bash
-   g++ -std=c++17 -Wall -Wextra -O2 -o minigit minigit.cpp
-   ```
-
-4. **Run the program**
-   ```bash
-   ./minigit
-   ```
-
-### Windows Users
-If you don't have a C++ compiler installed:
-1. Install MinGW-w64 or Visual Studio Community
-2. Use the provided Makefile or compile manually
-3. Run `minigit.exe` in Command Prompt or PowerShell
-
-## 🎯 Usage
-
-### Getting Started
-
-1. **Initialize MiniGit**
-   ```bash
-   minigit> init
-   ```
-
-2. **Create some test files**
-   ```bash
-   echo "Hello World" > test.txt
-   echo "int main() { return 0; }" > main.cpp
-   ```
-
-3. **Add files to staging**
-   ```bash
-   minigit> add test.txt
-   minigit> add main.cpp
-   ```
-
-4. **Commit your changes**
-   ```bash
-   minigit> commit -m "Initial commit with test files"
-   ```
-
-### Available Commands
-
-| Command | Description | Example |
-|---------|-------------|---------|
-| `init` | Initialize MiniGit repository | `init` |
-| `add <filename>` | Add file to staging area | `add main.cpp` |
-| `commit -m "message"` | Commit staged files | `commit -m "Add new feature"` |
-| `log` | Show commit history | `log` |
-| `checkout <id>` | Checkout to specific commit | `checkout 2` |
-| `status` | Show current status | `status` |
-| `undo` | Undo last checkout | `undo` |
-| `redo` | Redo last undo | `redo` |
-| `diff` | Show file differences | `diff` |
-| `help` | Show help message | `help` |
-| `exit` | Exit MiniGit | `exit` |
-
-### Example Workflow
-
-```bash
-# Initialize repository
-minigit> init
-
-# Create and add files
-echo "Hello World" > hello.txt
-minigit> add hello.txt
-minigit> commit -m "Add hello world file"
-
-# Modify file
-echo "Hello World v2" > hello.txt
-minigit> add hello.txt
-minigit> commit -m "Update hello world"
-
-# Check status
-minigit> status
-
-# View history
-minigit> log
-
-# Checkout to previous version
-minigit> checkout 1
-
-# Undo checkout
-minigit> undo
-```
-
-## 🏗️ Project Structure
-
-```
-minigit/
-├── minigit.cpp      # Main source code
-├── Makefile         # Build configuration
-├── README.md        # This file
-├── commits/         # Commit snapshots (created at runtime)
-│   ├── commit_1/
-│   ├── commit_2/
-│   └── ...
-└── test_files/      # Example files for testing
-```
-
-## 🔧 Data Structures Used
-
-### 1. Singly Linked List (Commit Chain)
-```cpp
-struct CommitNode {
-    int commitId;
-    string commitMessage;
-    string timestamp;
-    unordered_map<string, string> fileHashes;
-    CommitNode* next;
-};
-```
-
-### 2. Hash Maps (File Tracking)
-```cpp
-unordered_map<string, string> stagingArea;  // filename -> content hash
-unordered_map<string, string> fileHashes;   // filename -> content hash
-```
-
-### 3. Stacks (Undo/Redo)
-```cpp
-stack<CommitNode*> undoStack;
-stack<CommitNode*> redoStack;
-```
-
-## 🎨 Features in Detail
-
-### File Tracking
-- Uses C++ `std::hash` to generate content hashes
-- Tracks file modifications by comparing hashes
-- Supports any text file type
-
-### Commit System
-- Each commit has a unique ID, message, and timestamp
-- Files are stored as snapshots in `commits/commit_<id>/` directories
-- Commit history is maintained in a linked list
-
-### Undo/Redo System
-- Uses stacks to implement undo/redo functionality
-- Allows navigation through commit history
-- Automatically clears redo stack when new commits are made
-
-### Cross-platform Support
-- ANSI color codes for terminal output
-- Platform-specific screen clearing
-- Standard C++ filesystem operations
-
-## 🧪 Testing
-
-Create test files and try different scenarios:
-
-```bash
-# Test basic workflow
-echo "Test content" > test1.txt
-echo "Another test" > test2.txt
-
-# Test file modifications
-echo "Modified content" > test1.txt
-
-# Test checkout and undo
-minigit> checkout 1
-minigit> undo
-```
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **"File not found" error**
-   - Ensure the file exists in the current directory
-   - Check file permissions
-
-2. **"MiniGit not initialized" error**
-   - Run `init` command first
-
-3. **Compilation errors**
-   - Ensure you have a C++17 compatible compiler
-   - On Windows, make sure MinGW or Visual Studio is properly installed
-
-4. **Permission errors**
-   - Check if you have write permissions in the current directory
-
-## 📝 License
-
-This project is open source and available under the MIT License.
-
-## 🤝 Contributing
-
-Feel free to contribute to this project by:
-- Reporting bugs
-- Suggesting new features
-- Improving documentation
-- Submitting pull requests
-
-## 📞 Contact
-
-For questions or support, please open an issue on the project repository.
+[![Language](https://img.shields.io/badge/Language-C%2B%2B17-blue.svg)](https://en.cppreference.com/w/cpp/17)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](#-installation)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Web Portfolio](https://img.shields.io/badge/Web%20UI-Interactive%20Demo-gold.svg)](#-interactive-web-portfolio)
 
 ---
 
-**Happy Version Controlling! 🚀** 
+## 🌟 Key Features
+
+### 🔧 Core Engine Capabilities
+- **Commit Chain**: Singly Linked List managing sequential commit history nodes with timestamps & commit messages.
+- **Fast Staging Area**: `std::unordered_map` content hash tracking for $O(1)$ file modification checks.
+- **Undo / Redo System**: Dual `std::stack` structures allowing seamless traversal across checkout states.
+- **File Diffing**: Line-by-line & state comparison between working directory, staging area, and previous commits.
+- **Branching Architecture**: Isolated development timelines pointing to commit head pointers.
+- **Persistent Snapshots**: Directory-based versioning storing byte-for-byte repository snapshots under `commits/commit_<id>/`.
+- **Colored ANSI Output**: Enhanced user-friendly terminal output with status colors across Windows and Unix platforms.
+
+---
+
+## 🏗️ Project Folder Structure
+
+```
+Version-Control-System/
+├── 📁 src/
+│   └── minigit.cpp             # Primary C++ engine implementation (1200+ lines)
+│
+├── 📁 website/                  # Portfolio website & interactive terminal simulator
+│   ├── index.html              # Main responsive landing page
+│   ├── demo.html               # Full-screen interactive CLI simulator
+│   ├── styles.css              # Modern Classic styling & CSS custom properties
+│   └── script.js               # Terminal emulator logic & theme toggles
+│
+├── 📁 test_files/               # Sample files for CLI testing
+│   ├── sample.txt              # Sample text file
+│   └── main.cpp                # Sample C++ file
+│
+├── 📁 downloads/                # Download assets for pre-compiled releases
+│   ├── minigit.exe             # Pre-compiled Windows binary executable
+│   └── README.txt              # Installation notes
+│
+├── 📁 commits/                  # Generated snapshot storage (created at runtime)
+│
+├── 🛠️ Build Scripts & Docs
+│   ├── Makefile                # Cross-platform Unix/Linux/macOS Makefile
+│   ├── build.bat               # Automated Windows build script
+│   ├── README.md               # Main project documentation (this file)
+│   ├── PROJECT_STRUCTURE.md    # Detailed architecture documentation
+│   ├── PROJECT_SUMMARY.md      # Summary of features & statistics
+│   └── FEATURE_VERIFICATION.md # Feature verification logs
+└── ⚙️ .gitignore                 # Repository exclusion rules
+```
+
+---
+
+## 🔧 Data Structures & Algorithms Breakdown
+
+| Data Structure | Code Symbol | Role in MiniGit Engine |
+| :--- | :--- | :--- |
+| **Singly Linked List** | [`CommitNode*`](file:///c:/Users/karnv/OneDrive/Desktop/Version%20control%20System/src/minigit.cpp#L44-L53) | Forms the linear commit history graph; each node stores metadata, file hash maps, and a `next` pointer. |
+| **Hash Maps** | `unordered_map<string, string>` | Manages staged files and committed hashes (`filename -> hash`) for instant modification lookup. |
+| **Stacks** | `stack<CommitNode*>` | Powers `undo` and `redo` operations to traverse checkout history back and forth. |
+| **Vectors & Sets** | `vector<string>`, `set<string>` | Tracks active repository files and handles ignored files (`.minigitignore`). |
+| **Hashing Algorithm** | `std::hash<string>` | Generates content hashes to detect file modifications without full string comparisons. |
+
+---
+
+## 📦 Installation & Compilation
+
+### Prerequisites
+- **C++17 Compatible Compiler**: GCC 7+, Clang 5+, or MSVC 2017+
+- **Make** *(Optional, for Linux/macOS build targets)*
+
+### 1. Windows Compilation (Recommended)
+
+Run the automated build script in PowerShell or CMD:
+```powershell
+.\build.bat
+```
+*Or compile manually:*
+```powershell
+g++ -std=c++17 -Wall -Wextra -O2 -o minigit.exe src/minigit.cpp
+```
+Run the executable:
+```powershell
+.\minigit.exe
+```
+
+### 2. Linux / macOS Compilation
+
+Using `make`:
+```bash
+make
+./minigit
+```
+*Or compile manually:*
+```bash
+g++ -std=c++17 -Wall -Wextra -O2 -o minigit src/minigit.cpp
+./minigit
+```
+
+---
+
+## 🎯 Usage & Command Reference
+
+| Command | Description | Example Usage |
+| :--- | :--- | :--- |
+| `init` | Initialize a new MiniGit repository | `minigit> init` |
+| `add <file>` | Stage a file for the next commit | `minigit> add test_files/sample.txt` |
+| `commit -m "msg"` | Save staged changes as a snapshot | `minigit> commit -m "Initial commit"` |
+| `log` | View commit history linked list | `minigit> log` |
+| `status` | Show repository & staging state | `minigit> status` |
+| `diff` | Compare file changes across commits | `minigit> diff` |
+| `checkout <id>` | Revert workspace to commit `<id>` | `minigit> checkout 1` |
+| `undo` | Undo last checkout navigation | `minigit> undo` |
+| `redo` | Redo last undone checkout | `minigit> redo` |
+| `help` | Display interactive help menu | `minigit> help` |
+| `exit` | Safely exit MiniGit CLI | `minigit> exit` |
+
+---
+
+## 🌐 Interactive Web Portfolio & Simulator
+
+MiniGit comes with a **Modern Classic** portfolio and interactive terminal simulator located in the [`website/`](file:///c:/Users/karnv/OneDrive/Desktop/Version%20control%20System/website) folder.
+
+- **Main Landing Page**: [`website/index.html`](file:///c:/Users/karnv/OneDrive/Desktop/Version%20control%20System/website/index.html) (Features modern typography pairing, DSA breakdowns, responsive sections, and feature cards).
+- **Interactive Terminal Simulator**: [`website/demo.html`](file:///c:/Users/karnv/OneDrive/Desktop/Version%20control%20System/website/demo.html) (Test MiniGit commands directly inside your web browser).
+
+---
+
+## 🚀 Recommended Feature Improvements (Roadmap)
+
+To elevate MiniGit to full production parity, the following feature additions are recommended:
+
+1. **SHA-1 / SHA-256 Cryptographic Blob Storage**: Replace standard C++ `std::hash` string hashes with cryptographic SHA object storage to store content blobs in immutable object trees.
+2. **3-Way Branch Merging & Conflict Resolution**: Implement 3-way merge algorithms between branch heads and inject standard Git conflict markers (`<<<<<<< HEAD`) when file edits collide.
+3. **Stash Stack (`minigit stash`)**: Allow developers to temporarily shelve dirty uncommitted workspace modifications onto a LIFO stack and pop them back later (`stash pop`).
+4. **Commit Amending (`commit --amend`)**: Support modifying the tip commit message or updating staged snapshots on the active branch without creating a new node.
+5. **SVG / Mermaid Commit Graph Visualizer**: Render real-time interactive commit node DAGs directly in the web UI.
+
+---
+
+## 🌐 Best Places to Deploy
+
+### 1. Portfolio & Web Demo (`website/`)
+- **GitHub Pages** *(Recommended #1)*: Free static hosting directly from the repository's `main` branch or `/website` subfolder with SSL & custom domains.
+  - **Setup**: Go to `Repository Settings -> Pages -> Source: Deploy from branch (main / website)`.
+- **Vercel / Netlify**: Continuous integration and deployment from GitHub with global edge CDN distribution.
+  - **Setup**: Run `npx vercel --prod` pointing build directory to `website/`.
+
+### 2. Compiled CLI Binaries (`minigit.exe`)
+- **GitHub Releases**: Upload pre-compiled `minigit.exe` (Windows) and Linux executables to GitHub Releases tagged alongside version numbers (e.g. `v1.0.0`).
+
+---
+
+## 📝 License
+
+This project is open-source and licensed under the **MIT License**.

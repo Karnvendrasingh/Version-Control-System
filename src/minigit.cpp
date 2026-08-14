@@ -180,6 +180,16 @@ private:
         out.close();
     }
 public:
+    friend void testInit(bool& pass);
+    friend void testAdd(bool& pass);
+    friend void testCommit(bool& pass);
+    friend void testCheckout(bool& pass);
+
+    Branch* getCurrentBranch() const { return currentBranch; }
+    CommitNode* getCurrentCommit() const { return currentCommit; }
+    bool getIsInitialized() const { return isInitialized; }
+    const unordered_map<string, string>& getStagingArea() const { return stagingArea; }
+
     MiniGit() : head(nullptr), currentCommit(nullptr), nextCommitId(1), isInitialized(false) {
         loadIgnoreList();
     }
@@ -958,6 +968,10 @@ public:
         }
         endwin();
     }
+#else
+    void runTUI() {
+        cout << YELLOW << "GUI/TUI mode (ncurses) is not natively available on Windows. Please run via WSL or Linux terminal." << RESET << endl;
+    }
 #endif
 };
 
@@ -1109,11 +1123,12 @@ int main() {
                     string commitIdStr = command.substr(9);
                     commitIdStr.erase(0, commitIdStr.find_first_not_of(" \t"));
                     int commitId = stoi(commitIdStr);
-                    if (!minigit.currentBranch || !minigit.currentBranch->head) {
+                    Branch* curBranch = minigit.getCurrentBranch();
+                    if (!curBranch || !curBranch->head) {
                         cout << RED << "Error: No commits available for checkout." << RESET << endl;
                     } else {
                         bool found = false;
-                        CommitNode* cur = minigit.currentBranch->head;
+                        CommitNode* cur = curBranch->head;
                         while (cur) {
                             if (cur->commitId == commitId) { found = true; break; }
                             cur = cur->next;

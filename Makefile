@@ -4,7 +4,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 TARGET = minigit
-SOURCE = minigit.cpp
+SOURCE = src/minigit.cpp
 
 # Default target
 all: $(TARGET)

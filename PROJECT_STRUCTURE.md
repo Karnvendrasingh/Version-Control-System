@@ -4,8 +4,8 @@
 
 ```
 MiniGit-Version-Control-System/
-├── 📄 C++ Source Code
-│   ├── minigit.cpp              # Main C++ implementation
+├── 📁 Source Code
+│   ├── src/minigit.cpp          # Main C++ implementation
 │   ├── Makefile                 # Build configuration
 │   ├── build.bat                # Windows build script
 │   └── README.md                # C++ project documentation
