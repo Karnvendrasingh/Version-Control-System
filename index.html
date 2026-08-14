@@ -545,40 +545,30 @@
             </div>
         </section>
 
-        <!-- Feature Roadmap & Improvement Suggestions Section -->
-        <section id="roadmap" class="roadmap" style="padding: 4rem 0; background: var(--bg-secondary);">
+        <!-- Version History & Release Milestones Section -->
+        <section id="history" class="history" style="padding: 4rem 0; background: var(--bg-secondary);">
             <div class="container">
                 <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-                    <span style="background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Future Roadmap</span>
-                    <h2 style="margin-top: 0.8rem;">Recommended Feature Improvements</h2>
-                    <p>Suggested high-impact additions to take MiniGit to enterprise production parity.</p>
+                    <span style="background: rgba(99, 102, 241, 0.15); color: var(--primary-color); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Release History</span>
+                    <h2 style="margin-top: 0.8rem;">Version History & Core Milestones</h2>
+                    <p>Evolution of MiniGit version control engine releases and system architecture capabilities.</p>
                 </div>
-                <div class="roadmap-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <div class="history-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
                     <div class="feature-card" style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <div style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 1rem;"><i class="fas fa-fingerprint"></i></div>
-                        <h3>SHA-1 / SHA-256 Blob Hashing</h3>
-                        <p>Replace standard string hashing with cryptographic SHA object hashing to store immutable content blobs in object stores, matching production Git mechanisms.</p>
+                        <div style="font-size: 1.8rem; color: var(--accent-emerald); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> v1.0 Core Engine</div>
+                        <p>Implemented Singly Linked List commit chain, hash map staging area, and byte-for-byte persistent snapshot creation.</p>
                     </div>
                     <div class="feature-card" style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <div style="font-size: 2rem; color: var(--accent-emerald); margin-bottom: 1rem;"><i class="fas fa-code-merge"></i></div>
-                        <h3>3-Way Branch Merging & Conflicts</h3>
-                        <p>Implement automatic 3-way merge algorithms between branch tips and inject standard conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>) when file edits collide.</p>
+                        <div style="font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 1rem;"><i class="fas fa-layer-group"></i> v1.1 Branching & Stacks</div>
+                        <p>Added branch pointer management, checkout state navigation via dual LIFO stacks (undo/redo), and diff analysis.</p>
                     </div>
                     <div class="feature-card" style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <div style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"><i class="fas fa-box-archive"></i></div>
-                        <h3>Stash Stack (<code>minigit stash</code>)</h3>
-                        <p>Allow developers to temporarily shelve dirty uncommitted working directory modifications onto a LIFO stack and pop them back later.</p>
-                    </div>
-                    <div class="feature-card" style="background: var(--bg-tertiary); padding: 2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <div style="font-size: 2rem; color: var(--accent-cyan); margin-bottom: 1rem;"><i class="fas fa-pen-to-square"></i></div>
-                        <h3>Commit Amending (<code>--amend</code>)</h3>
-                        <p>Enable updating the commit message or staged snapshot of the tip node on the active branch linked list without spawning a new node.</p>
+                        <div style="font-size: 1.8rem; color: var(--primary-color); margin-bottom: 1rem;"><i class="fas fa-terminal"></i> v1.2 Interactive Web Demo</div>
+                        <p>Built modern web portfolio interface, interactive terminal simulation, and cross-platform compilation scripts.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-
 
         <!-- Merge Conflict Modal -->
         <div id="merge-conflict-modal" class="modal" style="display:none;">
@@ -635,7 +625,7 @@
                             </div>
                             <h3>Source Code</h3>
                             <p>Complete project with source files and documentation</p>
-                            <a href="../MiniGit-Project.zip" class="btn btn-primary download-btn" download>
+                            <a href="https://github.com/Karnvendrasingh/Version-Control-System/archive/refs/heads/main.zip" class="btn btn-primary download-btn" download>
                                 <i class="fas fa-download"></i>
                                 Download Source
                             </a>
@@ -646,7 +636,7 @@
                             </div>
                             <h3>Windows Executable</h3>
                             <p>Ready-to-run MiniGit for Windows users</p>
-                            <a href="../downloads/minigit.exe" class="btn btn-primary download-btn" download>
+                            <a href="downloads/minigit.exe" class="btn btn-primary download-btn" download>
                                 <i class="fas fa-download"></i>
                                 Download EXE
                             </a>

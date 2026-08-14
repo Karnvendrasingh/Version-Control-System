@@ -739,9 +739,20 @@ function renderFileArea() {
     const area = document.getElementById('file-area-animation');
     if (!area) return;
     area.innerHTML = `
-        <div class="file-box" data-area="working" data-tooltip="${fileTooltips.working}"><div>Working Directory</div>${fileStates.working.map(f => `<div class="file-item" data-tooltip="${fileTooltips.working}" data-status="new">${fileIcons.working}${f}</div>`).join('')}</div>
-        <div class="file-box" data-area="staging" data-tooltip="${fileTooltips.staging}"><div>Staging Area</div>${fileStates.staging.map(f => `<div class="file-item" data-tooltip="${fileTooltips.staging}" data-status="modified">${fileIcons.staging}${f}</div>`).join('')}</div>
-        <div class="file-box" data-area="repo" data-tooltip="${fileTooltips.repo}"><div>Repository</div>${fileStates.repo.map(f => `<div class="file-item" data-tooltip="${fileTooltips.repo}" data-status="committed">${fileIcons.repo}${f}</div>`).join('')}</div>
+        <div class="file-box" data-area="working" data-tooltip="${fileTooltips.working}">
+            <div class="file-box-title"><i class="fas fa-folder-open"></i> Working Directory</div>
+            <div class="file-list">${fileStates.working.map(f => `<div class="file-item" data-tooltip="${fileTooltips.working}" data-status="new">${fileIcons.working} ${f}</div>`).join('')}</div>
+        </div>
+        <div class="file-arrow-indicator"><i class="fas fa-arrow-right"></i></div>
+        <div class="file-box" data-area="staging" data-tooltip="${fileTooltips.staging}">
+            <div class="file-box-title"><i class="fas fa-layer-group"></i> Staging Area</div>
+            <div class="file-list">${fileStates.staging.map(f => `<div class="file-item" data-tooltip="${fileTooltips.staging}" data-status="modified">${fileIcons.staging} ${f}</div>`).join('')}</div>
+        </div>
+        <div class="file-arrow-indicator"><i class="fas fa-arrow-right"></i></div>
+        <div class="file-box" data-area="repo" data-tooltip="${fileTooltips.repo}">
+            <div class="file-box-title"><i class="fas fa-box-archive"></i> Repository</div>
+            <div class="file-list">${fileStates.repo.map(f => `<div class="file-item" data-tooltip="${fileTooltips.repo}" data-status="committed">${fileIcons.repo} ${f}</div>`).join('')}</div>
+        </div>
     `;
 }
 // === Animated File Movement and Modification ===
