@@ -209,13 +209,11 @@ function downloadExe() {
 }
 
 function openGitHub() {
-    // Replace with actual GitHub URL
-    window.open('https://github.com/yourusername/minigit', '_blank');
+    window.open('https://github.com/Karnvendrasingh', '_blank');
 }
 
 function openLinkedIn() {
-    // Replace with actual LinkedIn URL
-    window.open('https://linkedin.com/in/yourusername', '_blank');
+    window.open('https://www.linkedin.com/in/karnvendrasingh', '_blank');
 }
 
 function openDocs() {

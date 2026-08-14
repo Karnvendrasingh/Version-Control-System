@@ -57,6 +57,53 @@ Version-Control-System/
 
 ---
 
+## 📐 System Architecture
+
+### 1. Data Flow Architecture
+```mermaid
+graph TD
+    A["Working Directory Files"] -->|"minigit add <file>"| B["Staging Area (unordered_map<string, string>)"]
+    B -->|"minigit commit -m"| C["New CommitNode (Linked List Node)"]
+    C -->|"Saves Copy"| D["Disk Storage (commits/commit_N/)"]
+    C -->|"Updates Head"| E["Active Branch Pointer (main -> CommitNode)"]
+    E -->|"minigit checkout N"| F["Undo/Redo Stacks (stack<CommitNode*>)"]
+    F -->|"Restores Files"| A
+```
+
+### 2. High-Level Class & Component Design
+
+```
++-----------------------------------------------------------------------------------+
+|                                  MiniGit Engine                                   |
++-----------------------------------------------------------------------------------+
+|  - head: CommitNode*                                                              |
+|  - currentCommit: CommitNode*                                                     |
+|  - stagingArea: unordered_map<string, string>  [filename -> content_hash]         |
+|  - trackedFiles: vector<string>                                                   |
+|  - undoStack: stack<CommitNode*>                                                  |
+|  - redoStack: stack<CommitNode*>                                                  |
+|  - branches: unordered_map<string, Branch*>    [branch_name -> Branch*]           |
++-----------------------------------------------------------------------------------+
+                                         |
+                                         v
++-----------------------------------------------------------------------------------+
+|                              CommitNode (Linked List)                             |
++-----------------------------------------------------------------------------------+
+|  - commitId: int                                                                  |
+|  - commitMessage: string                                                          |
+|  - timestamp: string                                                              |
+|  - fileHashes: unordered_map<string, string>                                      |
+|  - next: CommitNode*                                                              |
++-----------------------------------------------------------------------------------+
+```
+
+- **`CommitNode` (Singly Linked List Node)**: Represents an immutable commit point in history containing commit ID, message, timestamp, file hash snapshot map, and pointer to `next` node.
+- **`Staging Area` (`std::unordered_map`)**: Provides $O(1)$ constant-time lookup for checking staged file modifications prior to committing.
+- **`Undo/Redo Stacks` (`std::stack`)**: Tracks commit node pointers during `checkout` switches, enabling seamless $O(1)$ undo and redo history traversal.
+- **Snapshot Persistence**: Saves byte-for-byte project copies inside isolated directories (`commits/commit_<id>/`) upon committing and restores them during checkout.
+
+---
+
 ## 🔧 Data Structures & Algorithms Breakdown
 
 | Data Structure | Code Symbol | Role in MiniGit Engine |
