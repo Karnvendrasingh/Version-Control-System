@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: minigit-version-control-system
+    env: static
+    buildCommand: ""
+    staticPublishPath: "."

@@ -42,7 +42,6 @@
                     <li><a href="#about" class="nav-link" tabindex="0">About</a></li>
                     <li><a href="#features" class="nav-link" tabindex="0">Features</a></li>
                     <li><a href="#roadmap" class="nav-link" tabindex="0">Roadmap</a></li>
-                    <li><a href="#deployment" class="nav-link" tabindex="0">Deployment</a></li>
                     <li><a href="./demo.html" class="nav-link" tabindex="0">Full Demo</a></li>
                     <li><a href="#download" class="nav-link" tabindex="0">Download</a></li>
                     <li><a href="#contact" class="nav-link" tabindex="0">Contact</a></li>
@@ -579,33 +578,7 @@
             </div>
         </section>
 
-        <!-- Deployment Recommendations Section -->
-        <section id="deployment" class="deployment" style="padding: 4rem 0;">
-            <div class="container">
-                <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-                    <span style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Deployment Guide</span>
-                    <h2 style="margin-top: 0.8rem;">Best Places to Deploy MiniGit</h2>
-                    <p>Optimized deployment strategies for both the web showcase interface and executable binaries.</p>
-                </div>
-                <div class="deployment-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div class="deploy-card" style="background: var(--bg-secondary); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;"><i class="fab fa-github"></i> 1. GitHub Pages (Web UI - Recommended)</h3>
-                        <p>Deploy the <code>website/</code> directory instantly using GitHub Pages. Features free hosting, automatic SSL certificates, global CDN, and custom domain integration.</p>
-                        <div style="margin-top: 1rem; background: var(--bg-tertiary); padding: 0.8rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">Settings &gt; Pages &gt; Source: Branch main / website</div>
-                    </div>
-                    <div class="deploy-card" style="background: var(--bg-secondary); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                        <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;"><i class="fas fa-bolt"></i> 2. Vercel / Netlify (Web UI)</h3>
-                        <p>Zero-configuration deployment for static assets with instantaneous preview builds for every pull request and edge performance.</p>
-                        <div style="margin-top: 1rem; background: var(--bg-tertiary); padding: 0.8rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">npx vercel --prod (Build Output: website/)</div>
-                    </div>
-                    <div class="deploy-card" style="background: var(--bg-secondary); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                        <h3 style="color: var(--accent-emerald); margin-bottom: 0.5rem;"><i class="fas fa-cube"></i> 3. GitHub Releases (CLI Executables)</h3>
-                        <p>Package compiled Windows binaries (<code>minigit.exe</code>) and Linux binaries into official GitHub Release assets tagged alongside repository versions.</p>
-                        <div style="margin-top: 1rem; background: var(--bg-tertiary); padding: 0.8rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">git tag -a v1.0 -m "Release v1.0" &amp;&amp; git push origin v1.0</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
 
         <!-- Merge Conflict Modal -->
         <div id="merge-conflict-modal" class="modal" style="display:none;">
