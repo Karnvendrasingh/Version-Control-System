@@ -217,8 +217,7 @@ function openLinkedIn() {
 }
 
 function openDocs() {
-    // Open documentation
-    window.open('#', '_blank');
+    window.open('https://github.com/Karnvendrasingh/Version-Control-System#readme', '_blank');
 }
 
 // Contact form handling

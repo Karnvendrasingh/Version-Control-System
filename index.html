@@ -636,7 +636,7 @@
                             </div>
                             <h3>Windows Executable</h3>
                             <p>Ready-to-run MiniGit for Windows users</p>
-                            <a href="downloads/minigit.exe" class="btn btn-primary download-btn" download>
+                            <a href="https://github.com/Karnvendrasingh/Version-Control-System/raw/main/downloads/minigit.exe" class="btn btn-primary download-btn" download="minigit.exe" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-download"></i>
                                 Download EXE
                             </a>
@@ -647,7 +647,7 @@
                             </div>
                             <h3>GitHub Repository</h3>
                             <p>Clone the repository and contribute to the project</p>
-                            <a href="#" class="btn btn-secondary download-btn" onclick="openGitHub()">
+                            <a href="https://github.com/Karnvendrasingh/Version-Control-System" class="btn btn-secondary download-btn" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
                                 View on GitHub
                             </a>
@@ -658,7 +658,7 @@
                             </div>
                             <h3>Documentation</h3>
                             <p>Comprehensive guide and API documentation</p>
-                            <a href="#" class="btn btn-outline download-btn" onclick="openDocs()">
+                            <a href="https://github.com/Karnvendrasingh/Version-Control-System#readme" class="btn btn-outline download-btn" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-book-open"></i>
                                 Read Docs
                             </a>
@@ -738,23 +738,24 @@
             </div>
         </section>
         <script>
-        // Formspree AJAX success message
         const contactForm = document.getElementById('contact-form');
         if (contactForm) {
-          contactForm.addEventListener('submit', async function(e) {
+          contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const formData = new FormData(contactForm);
-            const action = contactForm.getAttribute('action');
-            const response = await fetch(action, {
-              method: 'POST',
-              body: formData,
-              headers: { 'Accept': 'application/json' }
-            });
-            if (response.ok) {
-              contactForm.reset();
-              document.getElementById('form-success').style.display = 'block';
-            } else {
-              alert('There was a problem submitting your form. Please try again.');
+            const name = document.getElementById('name') ? document.getElementById('name').value : '';
+            const userEmail = document.getElementById('email') ? document.getElementById('email').value : '';
+            const subject = document.getElementById('subject') ? document.getElementById('subject').value : 'General Inquiry';
+            const msg = document.getElementById('message') ? document.getElementById('message').value : '';
+
+            const mailtoBody = encodeURIComponent(`Sender Name: ${name}\nSender Email: ${userEmail}\n\nMessage:\n${msg}`);
+            const mailtoSubject = encodeURIComponent(`[MiniGit Contact] ${subject}`);
+            
+            window.location.href = `mailto:karnvendrasingh@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+            
+            const successEl = document.getElementById('form-success');
+            if (successEl) {
+              successEl.textContent = 'Thank you! Opening your email client to send your message to karnvendrasingh@gmail.com.';
+              successEl.style.display = 'block';
             }
           });
         }
