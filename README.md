@@ -5,7 +5,8 @@ A high-performance, educational **Version Control System (VCS)** built in modern
 [![Language](https://img.shields.io/badge/Language-C%2B%2B17-blue.svg)](https://en.cppreference.com/w/cpp/17)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](#-installation)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Live Website](https://img.shields.io/badge/Live%20Website-karnvendrasingh.github.io%2FVersion--Control--System-success.svg)](https://karnvendrasingh.github.io/Version-Control-System/)
+[![Render Live App](https://img.shields.io/badge/Render%20Live-minigit--version--control--system.onrender.com-success.svg)](https://minigit-version-control-system.onrender.com)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Website-blue.svg)](https://karnvendrasingh.github.io/Version-Control-System/)
 
 ---
 
@@ -174,7 +175,8 @@ g++ -std=c++17 -Wall -Wextra -O2 -o minigit src/minigit.cpp
 
 MiniGit comes with a **Modern Classic** interactive portfolio and terminal simulator.
 
-- 🌐 **Live Website URL**: **[https://karnvendrasingh.github.io/Version-Control-System/](https://karnvendrasingh.github.io/Version-Control-System/)**
+- 🚀 **Render Live App**: **[https://minigit-version-control-system.onrender.com](https://minigit-version-control-system.onrender.com)**
+- 🌐 **GitHub Pages Site**: **[https://karnvendrasingh.github.io/Version-Control-System/](https://karnvendrasingh.github.io/Version-Control-System/)**
 - **Main Landing Page**: [`index.html`](file:///c:/Users/karnv/OneDrive/Desktop/Version%20control%20System/index.html) (Features modern typography pairing, DSA breakdowns, responsive sections, and feature cards).
 - **Interactive Terminal Simulator**: [`demo.html`](file:///c:/Users/karnv/OneDrive/Desktop/Version%20control%20System/demo.html) (Test MiniGit commands directly inside your web browser).
 
@@ -195,10 +197,8 @@ To elevate MiniGit to full production parity, the following feature additions ar
 ## 🌐 Deployment Instructions
 
 ### 1. Portfolio & Web Demo
-- **GitHub Pages** *(Live)*: Automatically built and deployed at **[https://karnvendrasingh.github.io/Version-Control-System/](https://karnvendrasingh.github.io/Version-Control-System/)**.
-  - **Setup**: `Repository Settings -> Pages -> Source: Deploy from a branch (main / root)`.
-- **Vercel / Netlify**: Continuous integration and deployment from GitHub with global edge CDN distribution.
-  - **Setup**: Run `npx vercel --prod`.
+- **Render** *(Live)*: Deployed automatically via Render Blueprint (`render.yaml`) at **[https://minigit-version-control-system.onrender.com](https://minigit-version-control-system.onrender.com)**.
+- **GitHub Pages** *(Live)*: Deployed at **[https://karnvendrasingh.github.io/Version-Control-System/](https://karnvendrasingh.github.io/Version-Control-System/)**.
 
 ### 2. Compiled CLI Binaries (`minigit.exe`)
 - **GitHub Releases**: Upload pre-compiled `minigit.exe` (Windows) and Linux executables to GitHub Releases tagged alongside version numbers (e.g. `v1.0.0`).
